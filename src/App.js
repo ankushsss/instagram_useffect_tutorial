@@ -2,36 +2,43 @@ import logo from './logo.svg';
 import './App.css';
 import { useState,useEffect } from 'react';
 import axios from 'axios';
+import Login from './Pages/Login';
+import Registration from './Pages/Registration';
+import {
+  Routes,
+  Route,
+} from "react-router-dom";
+import PageNotFound from './Pages/PageNotFound';
  
 function App(props) {
-const [count, setCount] = useState(10)
-const [show, setshow] = useState(true)
-const [user, setuser] = useState({
-  name:"ankush",
-  sname:"saxena",
-  age:20
-})
-const [products, setProducts]  = useState([])
+// const [count, setCount] = useState(10)
+// const [show, setshow] = useState(true)
+// const [user, setuser] = useState({
+//   name:"ankush",
+//   sname:"saxena",
+//   age:20
+// })
+// const [products, setProducts]  = useState([])
 
-useEffect(()=>{
-  apiCall()
+// useEffect(()=>{
+//   apiCall()
 
-},[])
+// },[])
 
 
-// let count = 10
-const incremant = ()=>{
-    setCount(count + 1)
-    setuser({...user,name:"ankit"})
-}
-const updateAge = ()=>{
-  setuser({...user,age:user.age+1})
-}
-const apiCall = ()=>{
-  axios.get("https://dummyjson.com/products").then((res)=>{
-    setProducts(res.data.products)
-   })
-}
+// // let count = 10
+// const incremant = ()=>{
+//     setCount(count + 1)
+//     setuser({...user,name:"ankit"})
+// }
+// const updateAge = ()=>{
+//   setuser({...user,age:user.age+1})
+// }
+// const apiCall = ()=>{
+//   axios.get("https://dummyjson.com/products").then((res)=>{
+//     setProducts(res.data.products)
+//    })
+// }
   return (
     // <div classNameName="App">
 //     <main className="main">
@@ -220,32 +227,17 @@ const apiCall = ()=>{
 //       </footer>
 // </main>
     // </div>
-    <div>
-    <button onClick={apiCall}>ApiCall</button>
-    <table border={1} width={"100%"}>
-      <tr>
-      <th>img</th>
-      <th>id</th>
-      <th>title</th>
-
-      <th>description</th>
-      </tr>
-
-      {products.map((product)=>{
+  
+    <Routes>
+        <Route path="/" element={<Login/>}/>
+        <Route path="/registration" element={<Registration/>}/>
+        <Route path="*" element={<PageNotFound/>}/>
 
 
-        return(<tr>
-          <td><img src={product.thumbnail} width={"60px"}  style={{borderRadius:"100%",height:"60px"}}/></td>
-              <td>{product.id}</td>
-              <td>{product.title}</td>
-              <td>{product.description}</td>
-
-
-          </tr>)
-      })}
-    
-    </table>
-    </div>
+      
+    </Routes>
+      
+  
   );
 }
 
