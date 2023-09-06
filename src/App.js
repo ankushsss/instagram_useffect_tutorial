@@ -9,6 +9,10 @@ import {
   Route,
 } from "react-router-dom";
 import PageNotFound from './Pages/PageNotFound';
+import Dashboard from './Pages/Dashboard';
+import Profile from './Components/Dashboard/Profile';
+import Chat from './Components/Dashboard/Chat';
+import Notification from './Components/Dashboard/Notification';
  
 function App(props) {
 // const [count, setCount] = useState(10)
@@ -232,6 +236,16 @@ function App(props) {
         <Route path="/" element={<Login/>}/>
         <Route path="/registration" element={<Registration/>}/>
         <Route path="*" element={<PageNotFound/>}/>
+        <Route path="/dashboard" element={<Dashboard/>}>
+            <Route path="profile" element={<Profile/>}/>
+            <Route path="chat" element={<Chat/>}/>
+            <Route path="notification" element={<Notification/>}/>
+
+
+
+
+        </Route>
+
 
 
       
